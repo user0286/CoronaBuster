@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import FallingObject from "../ui/FallingObject";
-import Laser from "../ui/Laser.";
+import Laser from "../ui/Laser";
 export default class CoronaBusterScene extends Phaser.Scene{
     constructor(){
         super('corona-buster-scene')
@@ -93,20 +93,20 @@ export default class CoronaBusterScene extends Phaser.Scene{
         })
 
         // // //Display Laser
-        this.laser = this.physics.add.group({
+        this.lasers = this.physics.add.group({
             classType: Laser,
             maxSize: 10,
             runChildUpdate: true
         })
 
         // // //ketika laser bertemu dengan enemy
-        // this.physics.add.overlap {
-        //     this.laser,
-        //     this.enemies,
-        //     this.hitEnemy,
-        //     null,
-        //     this
-        // }
+        this.physics.add.overlap (
+            this.lasers,
+            this.enemies,
+            this.hitEnemy,
+            null,
+            this
+        )
     }
 
     update(time){
